@@ -17,10 +17,6 @@ fecha.innerHTML = FECHA.toLocaleDateString('es-MX',{weekday: 'long', month: 'sho
 
 
 
-
-
-
-
 // funcion de agregar tarea 
 
 function agregarTarea( tarea,id,realizado,eliminado) {
@@ -61,9 +57,6 @@ function tareaEliminada(element){
     LIST[element.id].eliminado = true
     console.log(LIST)
 }
-
-
-
 
 
 // crear un evento para escuchar el enter y para habilitar el boton 
