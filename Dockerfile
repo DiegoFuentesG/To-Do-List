@@ -1,9 +1,13 @@
 FROM node:14
 
-WORKDIR /app
+COPY package*.json ./
 
-COPY ["scriptDB.js", "package-lock.json", "package.json", "/app" ]
+WORKDIR /app
 
 RUN npm install
 
-CMD ["node", "scriptDB.js"]
+COPY . .
+
+EXPOSE 3000
+
+CMD [ "node", "server.js" ]

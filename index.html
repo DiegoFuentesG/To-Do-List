@@ -23,9 +23,12 @@
         </div>
 
         <div class="agregar-tarea">
-            <input type="text" id="input" placeholder="agregar una tarea">
-            <i id="boton-enter" class="fas fa-plus-circle"></i>
+            <form id="form-agregar-tarea" action="/agregar-tarea" method="POST">
+                <input type="text" id="input" name="description" placeholder="agregar una tarea">
+                <button type="submit" id="boton-enter"><i class="fas fa-plus-circle"></i></button>
+            </form>
         </div>
+        
 
 
         <div class="seccion-tarea">

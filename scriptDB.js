@@ -3,10 +3,10 @@
 const { Pool } = require('pg');
 
 const config = {
-    user: 'postgres',          // Usuario de la base de datos
-    host: 'localhost',       // Nombre del servicio del contenedor de la base de datos en la red de Docker
-    password: '123',           // Contraseña de la base de datos
-    database: 'appdb'          // Nombre de la base de datos
+    user: 'postgres',      
+    host: 'localhost',       
+    password: '123',           
+    database: 'appdb'         
 }
 
 const pool = new Pool(config);
@@ -32,10 +32,10 @@ const insertUser = async () => {
 }
 
 //export async function insertTask(description, state, cod_user) 
-const insertTask = async (description, state, cod_user) => {
+const insertTask = async (description) => {
     try {
-        const text = 'INSERT INTO tareas(description, state, cod_user) VALUES ($1, $2, $3)';
-        const values = [description, state, cod_user];
+        const text = 'INSERT INTO tareas(description,state,cod_user) VALUES ($1, $2, $3)';
+        const values = [description, false , 1];
         const res = await pool.query(text, values);
         console.log(res);
     } catch (e) {
@@ -93,4 +93,4 @@ getTasks();
 //insertTask();
 //deleteTask();
 //editTask();
-//insertTask("hochala", false, 1);
+//insertTask("Arreglar boton +");

@@ -44,50 +44,35 @@ function tareaRealizada(element) {
     element.classList.toggle(check)
     element.classList.toggle(uncheck)
     element.parentNode.querySelector('.text').classList.toggle(lineThrough)
-    LIST[element.id].realizado = LIST[element.id].realizado ?false :true //Si
-   // console.log(LIST)
-   // console.log(LIST[element.id])
-   // console.log(LIST[element.id].realizado)
+   
 }
 
 function tareaEliminada(element){
-   // console.log(element.parentNode)
-   // console.log(element.parentNode.parentNode)
     element.parentNode.parentNode.removeChild(element.parentNode)
-    LIST[element.id].eliminado = true
     console.log(LIST)
 }
 
 
 // crear un evento para escuchar el enter y para habilitar el boton 
 
-botonEnter.addEventListener('click', ()=> {
+/*botonEnter.addEventListener('click', ()=> {
     const tarea = input.value
+    console.log(tarea + " esa es la tarea")
+    console.log(input)
+
     if(tarea){
         agregarTarea(tarea,id,false,false);
-        /*LIST.push({
-            nombre : tarea,
-            id : id,
-            realizado : false,
-            eliminado : false
-        });*/
         id++;
-        input.value = '';
+        //input.value = '';
     }
 
-})
+})*/
 
 document.addEventListener('keyup', function (event) {
     if (event.key=='Enter'){
         const tarea = input.value
         if(tarea) {
             agregarTarea(tarea,id,false,false);
-        /*LIST.push({
-            nombre : tarea,
-            id : id,
-            realizado : false,
-            eliminado : false
-        });*/
         input.value = '';
         id++;
         console.log(LIST);
@@ -95,6 +80,36 @@ document.addEventListener('keyup', function (event) {
     }
     
 })
+
+// ...
+
+// Evento para capturar el envío del formulario-
+document.getElementById('form-agregar-tarea').addEventListener('submit', async (event) => {
+    event.preventDefault();
+  
+    const descripcion = input.value;
+  
+    if (descripcion) {
+      const response = await fetch('/agregar-tarea', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ description: descripcion }),
+      });
+  
+      if (response.ok) {
+        // La tarea se agregó exitosamente
+        agregarTarea(descripcion, id, false, false);
+        input.value = '';
+        id++;
+      } else {
+        console.log('Error al agregar tarea');
+      }
+    }
+  });
+  
+
 
 
 //Marcar como realizada una tarea
@@ -114,7 +129,7 @@ lista.addEventListener('click',function(event){
 })
 
 
-
+//hasta aqui todo bien
 
 
 
